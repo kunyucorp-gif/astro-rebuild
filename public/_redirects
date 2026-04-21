@@ -1,0 +1,93 @@
+# ============================================
+# 寶璣建設 _redirects（精簡版）
+# 
+# ⚠️ 重要限制說明：
+# Cloudflare Pages 實務上只可靠處理前 100-200 條規則，
+# 因此採取「前 N 條精確對應 + 通配符 catch-all」策略。
+# 
+# 內容組成：
+#   - 服務類別頁精確對應：21 條（高流量）
+#   - Top 50 高流量文章精確對應
+#   - 3 條通配符規則處理其餘所有舊 URL
+# ============================================
+
+# ---- 服務類別頁（依流量排序）----
+/%E4%B8%89%E4%B8%83%E4%BA%94%E7%A7%9F%E7%B4%84%E8%A7%A3%E7%B4%84  /services/tenancy-375/  301  # 1788 clicks | /三七五租約解約
+/%E7%A5%AD%E7%A5%80%E5%85%AC%E6%A5%AD  /services/ancestral-land/  301  # 311 clicks | /祭祀公業
+/%E5%85%AC%E5%90%8C%E5%85%B1%E6%9C%89%E8%99%95%E7%90%86  /services/joint-ownership/  301  # 297 clicks | /公同共有處理
+/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E8%B2%B7%E8%B3%A3  /services/road-land/  301  # 251 clicks | /道路用地買賣
+/%E5%85%AC%E5%90%8C%E5%85%B1%E6%9C%89  /services/joint-ownership/  301  # 140 clicks | /公同共有
+/%E6%97%A5%E6%93%9A%E7%B9%BC%E6%89%BF  /services/cross-strait-inheritance/  301  # 130 clicks | /日據繼承
+/%E6%B5%AE%E8%A6%86%E5%9C%B0%E5%BE%A9%E6%AC%8A  /services/road-land/  301  # 128 clicks | /浮覆地復權
+/%E5%AE%B9%E7%A9%8D%E7%A7%BB%E8%BD%89%E4%BB%A3%E8%BE%A6  /services/floor-area-ratio/  301  # 77 clicks | /容積移轉代辦
+/%E6%8C%81%E4%BB%BD%E5%9C%9F%E5%9C%B0%E8%B2%B7%E8%B3%A3%E3%80%81%E7%A7%9F%E8%B3%83  /services/co-ownership/  301  # 42 clicks | /持份土地買賣、租賃
+/%E8%88%87%E6%88%91%E5%80%91%E8%81%AF%E7%B5%A1  /contact/  301  # 24 clicks | /與我們聯絡
+/%E5%90%84%E7%A8%AE%E8%B6%85%E5%9B%B0%E9%9B%A3%E6%A1%88%E4%BB%B6%E8%99%95%E7%90%86  /services/  301  # 17 clicks | /各種超困難案件處理
+/%E9%87%8D%E5%8A%83%E5%9C%B0%E8%B2%B7%E8%B3%A3  /services/rezoning-land/  301  # 16 clicks | /重劃地買賣
+/%E5%85%A9%E5%B2%B8%E4%B8%89%E5%9C%B0%E7%B9%BC%E6%89%BF  /services/cross-strait-inheritance/  301  # 15 clicks | /兩岸三地繼承
+/%E6%9C%AA%E8%BE%A6%E7%B9%BC%E6%89%BF  /blog/  301  # 10 clicks | /未辦繼承
+/%E6%9C%AA%E8%BE%A6%E7%B9%BC%E6%89%BF%E8%99%95%E7%90%86  /blog/  301  # 9 clicks | /未辦繼承處理
+/%E6%88%91%E5%80%91%E7%9A%84%E9%99%A3%E5%AE%B9-1  /about/  301  # 9 clicks | /我們的陣容-1
+/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91  /about/  301  # 9 clicks | /關於我們
+/%E5%90%84%E7%A8%AE%E6%8C%81%E4%BB%BD%E5%9C%9F%E5%9C%B0%E8%B2%B7%E8%B3%A3  /services/co-ownership/  301  # 3 clicks | /各種持份土地買賣
+/%E5%9C%B0%E7%B1%8D%E6%B8%85%E7%90%86  /blog/  301  # 3 clicks | /地籍清理
+/%E9%A6%96%E9%A0%81  /  301  # 2 clicks | /首頁
+/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91  /contact/  301  # 1 clicks | /聯絡我們
+
+# ---- Top 50 高流量文章精確對應 ----
+/f/%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%E5%8F%AF%E4%BB%A5%E5%87%BA%E7%A7%9F%E5%97%8E%EF%BC%9F%E2%80%94%E2%80%94%E5%9C%9F%E5%9C%B0%E5%B0%88%E5%AE%B6%E7%9A%84%E6%B7%BA%E7%99%BD%E8%A7%A3%E8%AA%AA  /services/co-ownership/  301  # 424 clicks | 分別共有可以出租嗎？——土地專家的淺白解說
+/f/%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E5%9C%9F%E5%9C%B0%E6%98%AF%E5%85%B1%E5%90%8C%E5%85%B1%E6%9C%89%E9%82%84%E6%98%AF%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%EF%BC%9F  /services/co-ownership/  301  # 393 clicks | 如何知道土地是共同共有還是分別共有？
+/f/%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%E5%8F%AF%E4%BB%A5%E8%B4%88%E8%88%87%E5%97%8E%EF%BC%9F  /services/co-ownership/  301  # 297 clicks | 分別共有可以贈與嗎？
+/%E9%A6%96%E9%A0%81/f/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E5%8F%AF%E4%BB%A5%E5%9C%8D%E8%B5%B7%E4%BE%86%E5%97%8E%EF%BC%9F  /services/road-land/  301  # 283 clicks | 道路用地可以圍起來嗎？
+/%E9%A6%96%E9%A0%81/f/%E9%A6%AC%E8%B7%AF%E5%AD%B8%E5%95%8F%E5%A4%A7%EF%BC%813%E5%88%86%E9%90%98%E7%9C%8B%E6%87%82%E3%80%8C%E7%A7%81%E8%A8%AD%E6%97%A2%E6%88%90%E8%A8%88%E7%95%AB%E9%81%93%E8%B7%AF%E3%80%8D%E5%B7%AE%E5%9C%A8%E5%93%AA%E8%A3%A1  /services/road-land/  301  # 277 clicks | 馬路學問大！3分鐘看懂「私設既成計畫道路」差在哪裡
+/f/%E4%B8%89%E4%B8%83%E4%BA%94%E6%B8%9B%E7%A7%9F%E5%BB%A2%E9%99%A4%E4%BA%86%E5%97%8E%EF%BC%9F  /services/tenancy-375/  301  # 276 clicks | 三七五減租廢除了嗎？
+/f/%E5%BB%BA%E5%9C%B0%E8%87%A8%E6%8E%A5%E3%80%8C%E6%9C%AA%E9%96%8B%E9%97%A2%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%E9%81%93%E8%B7%AF%E3%80%8D%EF%BC%8C%E5%8F%AF%E7%94%B3%E8%AB%8B%E8%88%88%E5%BB%BA%E5%97%8E%EF%BC%9F  /services/road-land/  301  # 266 clicks | 建地臨接「未開闢都市計畫道路」，可申請興建嗎？
+/f/%E8%BE%B2%E5%9C%B0%E8%A7%A3%E9%99%A4%E5%A5%97%E7%B9%AA%E7%AE%A1%E5%88%B6%E5%85%A8%E6%94%BB%E7%95%A5%EF%BD%9C20%E5%B9%B4%E5%9C%9F%E5%9C%B0%E9%96%8B%E7%99%BC%E5%B0%88%E5%AE%B6%E6%95%99%E4%BD%A0%E6%90%9E%E6%87%82%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F  /blog/  301  # 265 clicks | 農地解除套繪管制全攻略｜20年土地開發專家教你搞懂關鍵步驟
+/f/%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%9C%9F%E5%9C%B0%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%BE%86%E8%93%8B%E6%B0%91%E5%AE%BF%EF%BC%9F  /services/co-ownership/  301  # 251 clicks | 什麼樣的土地可以用來蓋民宿？
+/%E9%A6%96%E9%A0%81/f/%E7%B9%BC%E6%89%BF%E8%BE%B2%E5%9C%B0%E8%A3%9C%E7%A8%85%E6%8C%87%E5%8D%97%EF%BD%9C%E6%90%9E%E6%87%82%E9%80%99%E4%BA%9B%E8%A6%8F%E5%AE%9A%E5%85%8D%E8%8A%B1%E5%86%A4%E6%9E%89%E9%8C%A2%EF%BC%882025%E6%9C%80%E6%96%B0%E7%89%88%EF%BC%89  /blog/  301  # 247 clicks | 繼承農地補稅指南｜搞懂這些規定免花冤枉錢（2025最新版）
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E5%8F%AF%E4%BB%A5%E9%91%91%E7%95%8C%E5%97%8E%EF%BC%9F  /services/co-ownership/  301  # 246 clicks | 持分土地可以鑑界嗎？
+/%E9%A6%96%E9%A0%81/f/%E6%9C%AA%E4%BF%9D%E5%AD%98%E7%99%BB%E8%A8%98%E5%BB%BA%E7%89%A9%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E6%9C%83%E8%A2%AB%E6%8B%86%E5%97%8E%EF%BC%9F%E5%B0%88%E5%AE%B6%E5%B8%B6%E4%BD%A0%E4%B8%80%E6%AC%A1%E7%9C%8B%E6%87%82%E6%89%80%E6%9C%89%E6%AC%8A%E8%88%87%E8%A3%9C%E7%99%BB%E6%B5%81%E7%A8%8B  /blog/  301  # 220 clicks | 未保存登記建物是什麼？會被拆嗎？專家帶你一次看懂所有權與補登流程
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E8%A6%81%E6%80%8E%E9%BA%BC%E5%AE%9A%E5%83%B9%EF%BC%9F%E5%BD%B1%E9%9F%BF%E5%83%B9%E6%A0%BC%E7%9A%84%E9%97%9C%E9%8D%B5%E5%9B%A0%E7%B4%A0%E4%B8%80%E6%AC%A1%E7%9C%8B  /services/co-ownership/  301  # 219 clicks | 持分土地要怎麼定價？影響價格的關鍵因素一次看
+/f/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E5%8F%AF%E4%BB%A5%E8%93%8B%E6%88%BF%E5%AD%90%E5%97%8E%EF%BC%9F%E8%B3%87%E6%B7%B1%E5%9C%B0%E6%94%BF%E5%B0%88%E5%AE%B6%E6%95%99%E4%BD%A0%E7%A0%B4%E8%A7%A3%E3%80%8C%E5%85%AC%E5%85%B1%E8%A8%AD%E6%96%BD%E4%BF%9D%E7%95%99%E5%9C%B0%E3%80%8D%E7%9A%845%E5%A4%A7%E8%BF%B7%E6%80%9D  /services/road-land/  301  # 193 clicks | 道路用地可以蓋房子嗎？資深地政專家教你破解「公共設施保留地」的5大迷思
+/f/%E4%B8%89%E4%B8%83%E4%BA%94%E6%B8%9B%E7%A7%9F%E5%BB%A2%E9%99%A4%E4%BA%86%E5%97%8E%EF%BC%9F  /services/tenancy-375/  301  # 191 clicks | 三七五減租廢除了嗎？
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E8%83%BD%E8%93%8B%E6%88%BF%E5%AD%90%E5%97%8E%EF%BC%9F%E6%B3%95%E8%A6%8F%E9%99%90%E5%88%B6%E8%88%87%E7%94%B3%E8%AB%8B%E7%A8%8B%E5%BA%8F%E8%A7%A3%E6%9E%90  /services/co-ownership/  301  # 182 clicks | 持分土地能蓋房子嗎？法規限制與申請程序解析
+/f/%E8%BE%B2%E5%9C%B0%E8%BE%B2%E8%88%8D%E7%A7%BB%E8%BD%89%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BD%9C%E5%B8%B6%E6%82%A8%E7%9C%8B%E6%87%82%E9%97%9C%E9%8D%B5%E7%9C%89%E8%A7%92  /blog/  301  # 159 clicks | 農地農舍移轉懶人包｜帶您看懂關鍵眉角
+/%E9%A6%96%E9%A0%81/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E5%8F%AF%E4%BB%A5%E9%91%91%E7%95%8C%E5%97%8E%EF%BC%9F  /services/co-ownership/  301  # 147 clicks | 持分土地可以鑑界嗎？
+/%E9%A6%96%E9%A0%81/f/%E5%9C%B0%E5%83%B9%E7%A8%85%E8%AA%BF%E6%BC%B2%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%85%AD%E7%A8%AE%E6%83%85%E5%A2%83%E7%9C%8B%E6%87%82%E4%BD%A0%E7%9A%84%E7%A8%85%E5%96%AE%E7%82%BA%E4%BD%95%E8%AE%8A%E8%B2%B4  /blog/  301  # 140 clicks | 地價稅調漲全解析：六種情境看懂你的稅單為何變貴
+/f/%E9%95%B7%E8%BC%A9%E5%90%8D%E4%B8%8B%E5%9C%9F%E5%9C%B0%E6%9C%80%E6%98%93%E5%87%BA%E4%BA%8B%EF%BC%9F%E8%A9%90%E9%A8%99%E6%80%8E%E6%A8%A3%E4%B8%8B%E6%89%8B%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%EF%BC%9F  /services/co-ownership/  301  # 139 clicks | 長輩名下土地最易出事？詐騙怎樣下手你知道嗎？
+/f/%E8%B4%88%E8%88%87%E8%BE%B2%E5%9C%B0%E7%B5%A6%E5%AD%90%E5%A5%B3%EF%BC%9A%E7%9B%B4%E6%8E%A5%E8%B4%88%E8%88%87%E5%92%8C%E4%BF%A1%E8%A8%97%E6%9C%89%E4%BB%80%E9%BA%BC%E4%B8%8D%E5%90%8C%EF%BC%9F%E6%80%8E%E6%A8%A3%E6%89%8D%E8%83%BD%E5%85%8D%E7%B9%B3%E8%B4%88%E8%88%87%E7%A8%85%EF%BC%9F  /blog/  301  # 136 clicks | 贈與農地給子女：直接贈與和信託有什麼不同？怎樣才能免繳贈與稅？
+/f/%E5%85%AC%E5%85%B1%E8%A8%AD%E6%96%BD%E4%BF%9D%E7%95%99%E5%9C%B0%E5%AE%8C%E5%85%A8%E6%94%BB%E7%95%A5%EF%BC%9A%E5%BE%9E%E5%AE%9A%E7%BE%A9%E5%88%B0%E6%B4%BB%E7%94%A8%E4%B8%80%E6%AC%A1%E7%9C%8B%E6%87%82  /services/road-land/  301  # 121 clicks | 公共設施保留地完全攻略：從定義到活用一次看懂
+/%E9%A6%96%E9%A0%81/f/%E3%80%90%E8%B6%85%E5%9C%96%E8%A7%A3%E3%80%91%E8%B2%B7%E5%9C%B0%E5%89%8D%E5%BF%85%E7%9C%8B%EF%BC%81%E5%85%AC%E5%85%B1%E8%A8%AD%E6%96%BD%E4%BF%9D%E7%95%99%E5%9C%B0-vs-%E5%85%AC%E5%85%B1%E8%A8%AD%E6%96%BD%E7%94%A8%E5%9C%B0%E2%80%94%E6%90%9E%E6%87%82%E9%80%993%E5%A4%A7%E5%B7%AE%E7%95%B0%E6%89%8D%E4%B8%8D%E6%9C%83%E5%90%83%E8%99%A7  /services/road-land/  301  # 117 clicks | 【超圖解】買地前必看！公共設施保留地-vs-公共設施用地—搞懂這3大差異才不會吃
+/f/%E4%B8%89%E5%88%86%E9%90%98%E6%95%99%E4%BD%A0%E6%9F%A5%E6%B8%85%E6%A5%9A%EF%BC%9A%E5%9C%9F%E5%9C%B0%E7%9C%9F%E6%AD%A3%E7%9A%84%E6%89%80%E6%9C%89%E4%BA%BA%E6%98%AF%E8%AA%B0  /services/co-ownership/  301  # 117 clicks | 三分鐘教你查清楚：土地真正的所有人是誰
+/%E9%A6%96%E9%A0%81/f/%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E5%9C%9F%E5%9C%B0%E6%98%AF%E5%85%B1%E5%90%8C%E5%85%B1%E6%9C%89%E9%82%84%E6%98%AF%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%EF%BC%9F  /services/co-ownership/  301  # 114 clicks | 如何知道土地是共同共有還是分別共有？
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E5%8F%AF%E4%BB%A5%E8%B2%B7%E8%B3%A3%E5%97%8E%EF%BC%9F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85%E8%88%87%E4%BA%A4%E6%98%93%E6%B5%81%E7%A8%8B%E5%85%A8%E8%A7%A3%E6%9E%90  /services/co-ownership/  301  # 111 clicks | 持分土地可以買賣嗎？注意事項與交易流程全解析
+/%E9%A6%96%E9%A0%81/f/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E5%8F%AF%E4%BB%A5%E8%93%8B%E6%88%BF%E5%AD%90%E5%97%8E%EF%BC%9F%E8%B3%87%E6%B7%B1%E5%9C%B0%E6%94%BF%E5%B0%88%E5%AE%B6%E6%95%99%E4%BD%A0%E7%A0%B4%E8%A7%A3%E3%80%8C%E5%85%AC%E5%85%B1%E8%A8%AD%E6%96%BD%E4%BF%9D%E7%95%99%E5%9C%B0%E3%80%8D%E7%9A%845%E5%A4%A7%E8%BF%B7%E6%80%9D  /services/road-land/  301  # 110 clicks | 道路用地可以蓋房子嗎？資深地政專家教你破解「公共設施保留地」的5大迷思
+/%E9%A6%96%E9%A0%81/f/%E3%80%90%E8%B6%85%E8%A9%B3%E8%A7%A3%E6%87%B6%E4%BA%BA%E5%8C%85%E3%80%91%E4%B8%80%E5%BC%B5%E5%9C%96%E6%90%9E%E6%87%82%E5%85%B1%E6%9C%89%E5%9C%9F%E5%9C%B0%E5%88%86%E5%89%B2%EF%BC%81%E5%B0%88%E5%AE%B6%E6%95%99%E4%BD%A0%E9%81%BF%E9%96%8B%E6%B3%95%E5%BE%8B%E9%99%B7%E9%98%B1  /services/co-ownership/  301  # 102 clicks | 【超詳解懶人包】一張圖搞懂共有土地分割！專家教你避開法律陷阱
+/f/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E5%85%AC%E5%91%8A%E7%8F%BE%E5%80%BC%E5%85%A8%E6%94%BB%E7%95%A5%EF%BD%9C%E7%9C%8B%E6%87%82%E6%94%BF%E5%BA%9C%E4%BC%B0%E5%83%B9%E7%9C%89%E8%A7%92%EF%BC%8C%E9%81%BF%E5%85%8D%E5%90%83%E8%99%A7%E7%9A%847%E5%A4%A7%E9%87%8D%E9%BB%9E  /services/road-land/  301  # 102 clicks | 道路用地公告現值全攻略｜看懂政府估價眉角，避免吃虧的7大重點
+/f/%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%E7%B6%A0%E5%9C%B0%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90%E7%B6%A0%E5%9C%B0%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E9%99%90%E5%88%B6%E3%80%81%E5%8F%AF%E7%94%A8%E7%AF%84%E5%9C%8D%E8%88%87%E9%81%95%E8%A6%8F%E9%A2%A8%E9%9A%AA%EF%BC%81  /services/co-ownership/  301  # 102 clicks | 都市計畫綠地是什麼？完整解析綠地土地使用限制、可用範圍與違規風險！
+/%E9%A6%96%E9%A0%81/f/%E4%B8%89%E4%B8%83%E4%BA%94%E6%B8%9B%E7%A7%9F%E5%BB%A2%E9%99%A4%E4%BA%86%E5%97%8E%EF%BC%9F  /services/tenancy-375/  301  # 99 clicks | 三七五減租廢除了嗎？
+/f/%E6%97%A2%E6%88%90%E9%81%93%E8%B7%AF%E5%9C%B0%E4%B8%BB%E6%AC%8A%E5%88%A9%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BD%9C%E7%A7%81%E4%BA%BA%E5%9C%9F%E5%9C%B0%E8%AE%8A%E3%80%8C%E5%85%AC%E7%94%A8%E8%B7%AF%E3%80%8D%E5%BE%8C%EF%BC%8C%E4%BD%A0%E8%A9%B2%E7%9F%A5%E9%81%93%E7%9A%84%E7%9C%9F%E7%9B%B8%EF%BC%81%EF%BC%81  /services/road-land/  301  # 97 clicks | 既成道路地主權利全解析｜私人土地變「公用路」後，你該知道的真相！！
+/f/%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%E5%8F%AF%E4%BB%A5%E8%B4%88%E8%88%87%E5%97%8E%EF%BC%9F  /services/co-ownership/  301  # 94 clicks | 分別共有可以贈與嗎？
+/f/%E5%9C%9F%E5%9C%B0%E5%A2%9E%E5%80%BC%E7%A8%85%E5%85%8D%E5%BE%B5%E7%AF%84%E5%9C%8D%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E8%BC%95%E9%AC%86%E6%90%9E%E6%87%82%E5%93%AA%E4%BA%9B%E6%83%85%E6%B3%81%E4%B8%8D%E7%94%A8%E7%B9%B3%E7%A8%85  /services/co-ownership/  301  # 88 clicks | 土地增值稅免徵範圍全解析：輕鬆搞懂哪些情況不用繳稅
+/%E9%A6%96%E9%A0%81/f/%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%E5%8F%AF%E4%BB%A5%E5%87%BA%E7%A7%9F%E5%97%8E%EF%BC%9F%E2%80%94%E2%80%94%E5%9C%9F%E5%9C%B0%E5%B0%88%E5%AE%B6%E7%9A%84%E6%B7%BA%E7%99%BD%E8%A7%A3%E8%AA%AA  /services/co-ownership/  301  # 88 clicks | 分別共有可以出租嗎？——土地專家的淺白解說
+/f/%E8%AA%8D%E8%AD%98%E6%B3%95%E5%AE%9A%E7%A9%BA%E5%9C%B0%EF%BC%9A%E5%BB%BA%E7%AF%89%E7%94%A8%E5%9C%B0%E4%B8%AD%E4%B8%8D%E5%8F%AF%E5%BF%BD%E7%95%A5%E7%9A%84%E9%9A%B1%E5%BD%A2%E8%A6%8F%E5%AE%9A  /services/road-land/  301  # 86 clicks | 認識法定空地：建築用地中不可忽略的隱形規定
+/f/%E4%B8%89%E4%B8%83%E4%BA%94%E6%B8%9B%E7%A7%9F%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E8%AE%93%E6%82%A8%E8%BC%95%E9%AC%86%E4%BA%86%E8%A7%A3%E6%9C%80%E6%96%B0%E8%A6%8F%E5%AE%9A  /services/tenancy-375/  301  # 86 clicks | 三七五減租懶人包：讓您輕鬆了解最新規定
+/f/%E8%80%95%E5%9C%B0%E4%B8%89%E4%B8%83%E4%BA%94%E6%B8%9B%E7%A7%9F%E6%A2%9D%E4%BE%8B%E9%87%8B%E6%86%B2%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%9C%B0%E4%B8%BB%E6%94%B6%E5%9B%9E%E5%9C%9F%E5%9C%B0%E7%9A%84%E9%97%9C%E9%8D%B5%E8%BD%89%E6%8A%98  /services/tenancy-375/  301  # 85 clicks | 耕地三七五減租條例釋憲解析：地主收回土地的關鍵轉折
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E6%80%8E%E9%BA%BC%E7%B9%BC%E6%89%BF%EF%BC%9F%E9%81%BF%E5%85%8D%E7%88%AD%E8%AD%B0%E7%9A%84-3-%E5%80%8B%E9%97%9C%E9%8D%B5%E9%87%8D%E9%BB%9E  /services/co-ownership/  301  # 82 clicks | 持分土地怎麼繼承？避免爭議的-3-個關鍵重點
+/f/%E3%80%8A%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E6%8A%B5%E7%A8%85%E7%B5%82%E6%A5%B5%E6%94%BB%E7%95%A5%E3%80%8B%E2%80%94%E2%80%94%E5%BE%9E%E6%B3%95%E6%A2%9D%E8%A7%A3%E6%9E%90%E5%88%B0%E5%AF%A6%E6%88%B0%E6%93%8D%E4%BD%9C%E7%9A%847%E5%A4%A7%E9%97%9C%E9%8D%B5%E6%8C%87%E5%8D%97  /services/road-land/  301  # 77 clicks | 《道路用地抵稅終極攻略》——從法條解析到實戰操作的7大關鍵指南
+/f/%E5%88%86%E7%AE%A1%E5%A5%91%E7%B4%84%E3%80%81%E5%88%86%E7%AE%A1%E6%B1%BA%E5%AE%9A%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E6%95%99%E4%BD%A0%E7%94%A8%E7%B0%A1%E5%96%AE%E6%96%B9%E5%BC%8F%E6%90%9E%E6%87%82%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E7%9A%84%E7%AE%A1%E7%90%86  /services/co-ownership/  301  # 77 clicks | 分管契約、分管決定到底是什麼？教你用簡單方式搞懂持分土地的管理
+/f/%E4%BA%BA%E4%BA%BA%E9%83%BD%E8%83%BD%E8%B2%B7%E8%BE%B2%E5%9C%B0%EF%BC%8C%E4%B8%8D%E5%8F%AA%E6%98%AF%E8%BE%B2%E6%B0%91%E7%9A%84%E5%B0%88%E5%88%A9  /blog/  301  # 76 clicks | 人人都能買農地，不只是農民的專利
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E6%80%8E%E9%BA%BC%E8%B3%A3%E6%9C%80%E5%88%92%E7%AE%97%EF%BC%9F%E8%87%AA%E5%94%AE-vs-%E6%89%BE%E6%8A%95%E8%B3%87%E5%AE%A2%E7%9A%84%E5%84%AA%E7%BC%BA%E9%BB%9E  /services/co-ownership/  301  # 76 clicks | 持分土地怎麼賣最划算？自售-vs-找投資客的優缺點
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E5%8F%AF%E4%BB%A5%E6%8A%B5%E6%8A%BC%E8%B2%B8%E6%AC%BE%E5%97%8E%EF%BC%9F%E9%8A%80%E8%A1%8C%E6%94%BE%E8%B2%B8%E6%A2%9D%E4%BB%B6%E8%A7%A3%E6%9E%90  /services/co-ownership/  301  # 74 clicks | 持分土地可以抵押貸款嗎？銀行放貸條件解析
+/f/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%81%9C%E8%BB%8A%E5%A0%B4%E5%97%8E%EF%BC%9F  /services/road-land/  301  # 73 clicks | 道路用地可以做停車場嗎？
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E8%83%BD%E5%BC%B7%E5%88%B6%E5%88%86%E5%89%B2%E5%97%8E%EF%BC%9F%E6%B3%95%E9%99%A2%E8%A3%81%E5%AE%9A%E7%9A%84%E5%8F%AF%E8%83%BD%E7%B5%90%E6%9E%9C%E5%88%86%E6%9E%90  /services/co-ownership/  301  # 71 clicks | 持分土地能強制分割嗎？法院裁定的可能結果分析
+/%E9%A6%96%E9%A0%81/f/%E9%81%93%E8%B7%AF%E7%94%A8%E5%9C%B0%E5%85%AC%E5%91%8A%E7%8F%BE%E5%80%BC%E5%85%A8%E6%94%BB%E7%95%A5%EF%BD%9C%E7%9C%8B%E6%87%82%E6%94%BF%E5%BA%9C%E4%BC%B0%E5%83%B9%E7%9C%89%E8%A7%92%EF%BC%8C%E9%81%BF%E5%85%8D%E5%90%83%E8%99%A7%E7%9A%847%E5%A4%A7%E9%87%8D%E9%BB%9E  /services/road-land/  301  # 68 clicks | 道路用地公告現值全攻略｜看懂政府估價眉角，避免吃虧的7大重點
+/f/%E6%8C%81%E5%88%86%E5%9C%9F%E5%9C%B0%E8%83%BD%E8%93%8B%E6%88%BF%E5%AD%90%E5%97%8E%EF%BC%9F%E6%B3%95%E8%A6%8F%E9%99%90%E5%88%B6%E8%88%87%E7%94%B3%E8%AB%8B%E7%A8%8B%E5%BA%8F%E8%A7%A3%E6%9E%90  /services/co-ownership/  301  # 68 clicks | 持分土地能蓋房子嗎？法規限制與申請程序解析
+/f/%E5%9C%9F%E5%9C%B0%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%E8%B2%B7%E8%B3%A3%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F  /services/co-ownership/  301  # 66 clicks | 土地分別共有買賣解決方式
+/f/%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E5%9C%9F%E5%9C%B0%E6%98%AF%E5%85%B1%E5%90%8C%E5%85%B1%E6%9C%89%E9%82%84%E6%98%AF%E5%88%86%E5%88%A5%E5%85%B1%E6%9C%89%EF%BC%9F  /services/co-ownership/  301  # 66 clicks | 如何知道土地是共同共有還是分別共有？
+
+# ---- 通配符 Catch-All（處理其餘所有舊 URL）----
+# 無法精確對應的文章全部導到 blog 首頁，避免 404
+/%E9%A6%96%E9%A0%81/f/*  /blog/  301  # /首頁/f/*
+/f/*  /blog/  301  # /f/*
+/%E9%A6%96%E9%A0%81  /  301  # /首頁
