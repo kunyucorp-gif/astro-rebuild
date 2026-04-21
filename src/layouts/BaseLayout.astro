@@ -1,0 +1,66 @@
+---
+/**
+ * 基礎 Layout
+ * 所有頁面都繼承這個，統一 head、nav、footer 結構
+ */
+
+import SEO from '../components/SEO.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { organizationSchema, websiteSchema } from '../lib/schemas';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  articleMeta?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    author: string;
+    section: string;
+    tags?: string[];
+  };
+  jsonLd?: object[];
+  /** 是否為首頁（首頁額外加 WebSite schema） */
+  isHome?: boolean;
+}
+
+const {
+  isHome = false,
+  jsonLd = [],
+  ...seoProps
+} = Astro.props;
+
+// 組織 schema 每頁都放
+const baseSchemas = [organizationSchema()];
+if (isHome) baseSchemas.push(websiteSchema());
+const allSchemas = [...baseSchemas, ...jsonLd];
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="寶璣建設有限公司" />
+    <meta name="theme-color" content="#0f1419" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <SEO jsonLd={allSchemas} {...seoProps} />
+  </head>
+  <body>
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

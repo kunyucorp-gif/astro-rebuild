@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../lib/schemas';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: '首頁', url: '/' },
+    { name: '聯絡諮詢', url: '/contact/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="聯絡寶璣建設｜免費土地案件諮詢"
+  description="寶璣建設有限公司板橋辦公室聯絡資訊：02-2274-6789、LINE @484jhubi。初次諮詢完全免費，5 個工作天內提供書面評估。歡迎帶地號來電洽詢。"
+  jsonLd={schemas}
+>
+  <section class="hero">
+    <div class="wrap">
+      <p style="color: var(--accent-gold); font-family: var(--font-serif); letter-spacing: .2em; margin-bottom: .5rem;">
+        CONTACT · 聯絡諮詢
+      </p>
+      <h1>免費<span class="gold">土地案件諮詢</span></h1>
+      <p class="lead">
+        初次諮詢完全免費，由律師與資深地政士團隊為您評估，
+        帶著地號或土地謄本即可開始討論。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2 style="border: none; margin-top: 0;">聯絡資訊</h2>
+
+          <div class="info-block">
+            <h4>📍 辦公室地址</h4>
+            <p>
+              新北市板橋區<br/>
+              南雅南路二段 144 巷 73 號
+            </p>
+            <p style="font-size: .9rem; color: var(--text-muted);">
+              捷運亞東醫院站 2 號出口，步行約 5 分鐘
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h4>☎ 電話</h4>
+            <p>
+              <a href="tel:0222746789" style="font-size: 1.25rem; color: var(--accent-gold-dark);">
+                02-2274-6789
+              </a>
+            </p>
+            <p style="font-size: .9rem; color: var(--text-muted);">
+              週一至週五 08:00–17:00
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h4>💬 LINE 官方帳號</h4>
+            <p>
+              <a href="https://lin.ee/wedzic3" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: .5rem;">
+                加入 LINE @484jhubi
+              </a>
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h4>🚇 交通指南</h4>
+            <ul>
+              <li>捷運板南線 → 亞東醫院站 2 號出口</li>
+              <li>停車：華東收費停車場</li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h4>🏢 公司資訊</h4>
+            <ul>
+              <li>統一編號：94157953</li>
+              <li>成立於：2012 年</li>
+              <li>服務範圍：全台不動產特殊案件整合</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contact-cta">
+          <div class="cta-card">
+            <h3 style="color: var(--accent-gold); margin-top: 0;">
+              如何開始諮詢？
+            </h3>
+            <ol class="cta-steps">
+              <li>
+                <strong>準備資料</strong>
+                土地謄本、地籍圖或地號即可（沒有也沒關係）
+              </li>
+              <li>
+                <strong>聯絡我們</strong>
+                電話、LINE 或電子信箱都可以
+              </li>
+              <li>
+                <strong>初次諮詢</strong>
+                免費評估，我們會告訴您可行方向
+              </li>
+              <li>
+                <strong>書面報價</strong>
+                5 個工作天內提供詳細書面評估
+              </li>
+            </ol>
+
+            <div style="margin-top: 2rem; text-align: center;">
+              <a href="tel:0222746789" class="btn btn-primary" style="margin: .25rem;">
+                立即來電
+              </a>
+              <a href="https://lin.ee/wedzic3" target="_blank" rel="noopener" class="btn btn-outline" style="margin: .25rem;">
+                LINE 諮詢
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .info-block {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .info-block:last-child {
+    border-bottom: none;
+  }
+
+  .info-block h4 {
+    color: var(--accent-gold-dark);
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-size: 1.05rem;
+  }
+
+  .info-block p, .info-block ul {
+    margin-bottom: 0;
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    position: sticky;
+    top: 100px;
+  }
+
+  .cta-steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  .cta-steps li {
+    position: relative;
+    padding: .75rem 0 .75rem 3rem;
+    color: var(--accent-gold-light);
+    line-height: 1.7;
+    counter-increment: step;
+    font-size: .95rem;
+  }
+
+  .cta-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: .5rem;
+    width: 32px;
+    height: 32px;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-family: var(--font-serif);
+  }
+
+  .cta-steps li strong {
+    display: block;
+    color: var(--accent-gold);
+    margin-bottom: .25rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-card {
+      position: static;
+    }
+  }
+</style>

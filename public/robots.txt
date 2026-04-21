@@ -1,0 +1,34 @@
+# 寶璣建設有限公司 robots.txt
+# https://www.bqfox.com
+
+# 允許所有搜尋引擎爬取
+User-agent: *
+Allow: /
+
+# 明確允許 AI 爬蟲（GEO 優化關鍵）
+# ChatGPT、Claude、Gemini、Perplexity 的爬蟲都明確允許
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap 位置
+Sitemap: https://www.bqfox.com/sitemap-index.xml
+
+# 不索引的路徑
+Disallow: /preview/
+Disallow: /draft/
+Disallow: /api/

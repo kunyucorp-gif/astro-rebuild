@@ -1,0 +1,517 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// 取最新 3 篇文章
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+articles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latestArticles = articles.slice(0, 3);
+
+const services = [
+  { slug: 'road-land', title: '道路用地買賣', desc: '既成道路、計畫道路全台收購' },
+  { slug: 'floor-area-ratio', title: '容積移轉代辦', desc: '送出基地申辦、代金計算' },
+  { slug: 'tenancy-375', title: '三七五租約解約', desc: '耕地租佃爭議處理' },
+  { slug: 'co-ownership', title: '持份土地買賣', desc: '分別共有整合與買賣' },
+  { slug: 'joint-ownership', title: '公同共有處理', desc: '家族共有土地分割' },
+  { slug: 'ancestral-land', title: '祭祀公業', desc: '派下員申報與土地處分' },
+  { slug: 'rezoning-land', title: '重劃地買賣', desc: '市地重劃區土地整合' },
+  { slug: 'cross-strait-inheritance', title: '兩岸三地繼承', desc: '大陸繼承人來台繼承' },
+];
+---
+
+<BaseLayout
+  title="寶璣建設有限公司｜道路用地、容積移轉、三七五租約全台土地專業整合"
+  description="寶璣建設深耕板橋逾十年，專業處理道路用地買賣、容積移轉代辦、三七五租約解約、持份土地整合、祭祀公業、兩岸三地繼承等特殊土地案件。律師把關合約，資深地政士辦理，初次諮詢免費。"
+  isHome={true}
+>
+  <section class="home-hero">
+    <div class="wrap home-hero-inner">
+      <div class="home-hero-content">
+        <p class="tagline">
+          深耕板橋・誠信待人・全台土地專業整合
+        </p>
+        <h1>
+          處理棘手土地案件，<br/>
+          就交給<span class="gold">寶璣建設</span>
+        </h1>
+        <p class="lead">
+          道路用地、容積移轉、三七五租約、持份土地、祭祀公業、兩岸繼承⋯⋯
+          特殊土地的每一種困境，我們都有十年以上的處理經驗。
+          律師全程審核合約，資深地政士辦理過戶，5 個工作天提供書面評估。
+        </p>
+        <div class="hero-actions">
+          <a href="/contact/" class="btn btn-primary">免費評估諮詢</a>
+          <a href="tel:0222746789" class="btn btn-outline">☎ 02-2274-6789</a>
+        </div>
+      </div>
+      <div class="home-hero-visual" aria-hidden="true">
+        <div class="brand-mark">璣</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 大服務 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="eyebrow">OUR SERVICES</p>
+        <h2 style="border:none; text-align:center">八大土地專業服務</h2>
+        <p class="section-sub">
+          寶璣建設專辦特殊土地案件，每一項服務都由律師與地政士全程把關
+        </p>
+      </div>
+
+      <div class="services-grid">
+        {services.map((s, i) => (
+          <a href={`/services/${s.slug}/`} class="service-card">
+            <span class="service-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+            <span class="service-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 為什麼選擇寶璣 -->
+  <section class="section why-section">
+    <div class="wrap">
+      <div class="why-grid">
+        <div class="why-content">
+          <p class="eyebrow">WHY CHOOSE US</p>
+          <h2 style="border:none">為什麼選擇寶璣建設</h2>
+          <ul class="why-list">
+            <li>
+              <strong>深耕板橋逾十年</strong>
+              累積上千件特殊土地實務經驗，熟悉新北市各區地政實務與都市計畫。
+            </li>
+            <li>
+              <strong>律師 + 地政士全程把關</strong>
+              合約審核、產權調查、稅務規劃、過戶登記一條龍完成。
+            </li>
+            <li>
+              <strong>5 個工作天書面評估</strong>
+              帶地號來電即可，初次諮詢完全免費，不收任何隱藏費用。
+            </li>
+            <li>
+              <strong>全台收購不限面積</strong>
+              道路用地、公設保留地、持份土地全台收購，不受地段限制。
+            </li>
+          </ul>
+        </div>
+        <div class="why-visual">
+          <div class="stats">
+            <div class="stat"><div class="n">10+</div><div class="l">深耕年資</div></div>
+            <div class="stat"><div class="n">1000+</div><div class="l">實務案件</div></div>
+            <div class="stat"><div class="n">5</div><div class="l">工作天評估</div></div>
+            <div class="stat"><div class="n">全台</div><div class="l">收購範圍</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新文章 -->
+  {latestArticles.length > 0 && (
+    <section class="section latest-section">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow">KNOWLEDGE</p>
+          <h2 style="border:none; text-align:center">最新知識文章</h2>
+          <p class="section-sub">由專業團隊撰寫的土地法律與實務指南</p>
+        </div>
+
+        <div class="articles-grid">
+          {latestArticles.map((article) => (
+            <a href={`/blog/${article.slug}/`} class="article-card">
+              <div class="article-card-meta">
+                <span class="article-category">{article.data.category}</span>
+                <time datetime={article.data.pubDate.toISOString()}>
+                  {article.data.pubDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'short' })}
+                </time>
+              </div>
+              <h3>{article.data.title}</h3>
+              <p>{article.data.description}</p>
+              <span class="read-more">閱讀全文 →</span>
+            </a>
+          ))}
+        </div>
+
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="/blog/" class="btn btn-outline">瀏覽所有文章</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 最終 CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>有土地問題？立即與我們聯繫</h2>
+      <p>
+        初次諮詢完全免費．律師審約．資深地政士辦理．誠信保障
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <a href="/contact/" class="btn btn-primary">傳送諮詢</a>
+        <a href="tel:0222746789" class="btn btn-outline">☎ 02-2274-6789</a>
+        <a href="https://lin.ee/wedzic3" target="_blank" rel="noopener" class="btn btn-outline">LINE @484jhubi</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-hero {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .home-hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(ellipse, rgba(201, 169, 89, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .home-hero-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+  }
+
+  .home-hero .tagline {
+    font-family: var(--font-serif);
+    letter-spacing: 0.15em;
+    font-size: .95rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+  }
+
+  .home-hero h1 {
+    color: var(--text-inverse);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.35;
+    font-weight: 900;
+    margin-bottom: 1.25rem;
+  }
+
+  .home-hero .lead {
+    font-size: 1.1rem;
+    color: var(--accent-gold-light);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .home-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-mark {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+    color: var(--bg-primary);
+    font-family: var(--font-serif);
+    font-weight: 900;
+    font-size: 8rem;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 60px rgba(201, 169, 89, 0.3);
+    position: relative;
+  }
+
+  .brand-mark::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-gold);
+    opacity: .3;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    color: var(--accent-gold-dark);
+    font-family: var(--font-serif);
+    letter-spacing: 0.2em;
+    font-size: .875rem;
+    margin-bottom: .5rem;
+  }
+
+  .section-sub {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    position: relative;
+    padding: 2rem 1.5rem;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    transition: all var(--transition);
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+    opacity: 0;
+    transition: opacity var(--transition);
+    z-index: 0;
+  }
+
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-card:hover h3,
+  .service-card:hover p,
+  .service-card:hover .service-num,
+  .service-card:hover .service-arrow {
+    color: var(--bg-primary);
+  }
+
+  .service-num {
+    font-family: var(--font-serif);
+    font-size: .85rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: .75rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+    margin: 0 0 .5rem;
+  }
+
+  .service-card p {
+    color: var(--text-secondary);
+    font-size: .9rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-arrow {
+    color: var(--accent-gold-dark);
+    font-size: 1.25rem;
+  }
+
+  .why-section {
+    background: var(--bg-section);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .why-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+
+  .why-list li {
+    padding: 1rem 0 1rem 2rem;
+    border-bottom: 1px solid var(--border-light);
+    position: relative;
+  }
+
+  .why-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    color: var(--accent-gold);
+    font-weight: 900;
+    font-size: 1.25rem;
+  }
+
+  .why-list strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: .25rem;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat {
+    background: white;
+    padding: 1.75rem 1rem;
+    border-top: 3px solid var(--accent-gold);
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat .n {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: var(--accent-gold-dark);
+    line-height: 1;
+    margin-bottom: .25rem;
+  }
+
+  .stat .l {
+    font-size: .85rem;
+    color: var(--text-secondary);
+  }
+
+  .latest-section {
+    background: var(--bg-section);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .article-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .article-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+    color: var(--text-muted);
+  }
+
+  .article-category {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: .2rem .75rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: .75rem;
+  }
+
+  .article-card h3 {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin: 0 0 .75rem;
+  }
+
+  .article-card p {
+    font-size: .9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  .read-more {
+    color: var(--accent-gold-dark);
+    font-size: .85rem;
+    font-weight: 500;
+  }
+
+  .final-cta {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(201, 169, 89, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .final-cta h2 {
+    color: var(--accent-gold);
+    border: none;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .final-cta p {
+    color: var(--accent-gold-light);
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 900px) {
+    .home-hero-inner {
+      grid-template-columns: 1fr;
+    }
+    .home-hero-visual {
+      display: none;
+    }
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

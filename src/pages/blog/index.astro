@@ -1,0 +1,230 @@
+---
+/**
+ * 文章列表頁 /blog/
+ * 顯示所有文章卡片 + 分類篩選
+ */
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../../lib/schemas';
+import { CATEGORIES, CATEGORY_SLUGS } from '../../content/config';
+
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+
+// 依發布日期排序（新 → 舊）
+articles.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// 統計每個分類的文章數
+const categoryCounts = CATEGORIES.reduce((acc, cat) => {
+  acc[cat] = articles.filter((a) => a.data.category === cat).length;
+  return acc;
+}, {} as Record<string, number>);
+
+const schemas = [
+  breadcrumbSchema([
+    { name: '首頁', url: '/' },
+    { name: '知識專欄', url: '/blog/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="土地法律知識專欄"
+  description="寶璣建設彙整 58 篇以上道路用地、容積移轉、三七五租約、持份土地、祭祀公業、兩岸繼承等特殊土地實務指南，由資深地政士與律師團隊撰寫，協助您理解複雜土地案件。"
+  jsonLd={schemas}
+>
+  <section class="hero">
+    <div class="wrap">
+      <p style="color: var(--accent-gold); font-family: var(--font-serif); letter-spacing: .2em; margin-bottom: .5rem;">
+        KNOWLEDGE · 知識專欄
+      </p>
+      <h1>土地法律與實務 <span class="gold">深度解析</span></h1>
+      <p class="lead">
+        由寶璣建設專業團隊撰寫，涵蓋道路用地、容積移轉、三七五租約、
+        持分土地、祭祀公業等特殊土地案件的實務指南。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <!-- 分類標籤 -->
+      <div class="categories">
+        <button class="cat-tag active" data-cat="all">
+          全部 <span class="count">{articles.length}</span>
+        </button>
+        {CATEGORIES.map((cat) => (
+          categoryCounts[cat] > 0 && (
+            <button class="cat-tag" data-cat={CATEGORY_SLUGS[cat]}>
+              {cat} <span class="count">{categoryCounts[cat]}</span>
+            </button>
+          )
+        ))}
+      </div>
+
+      <!-- 文章網格 -->
+      <div class="articles-grid">
+        {articles.map((article) => (
+          <a
+            href={`/blog/${article.slug}/`}
+            class="article-card"
+            data-cat={CATEGORY_SLUGS[article.data.category as keyof typeof CATEGORY_SLUGS]}
+          >
+            <div class="article-card-meta">
+              <span class="article-category">{article.data.category}</span>
+              <time datetime={article.data.pubDate.toISOString()}>
+                {article.data.pubDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'short' })}
+              </time>
+            </div>
+            <h3>{article.data.title}</h3>
+            <p>{article.data.description}</p>
+            <span class="read-more">閱讀全文 →</span>
+          </a>
+        ))}
+      </div>
+
+      {articles.length === 0 && (
+        <p style="text-align:center;padding:3rem;color:var(--text-muted)">
+          文章遷移中，請稍候⋯
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .cat-tag {
+    background: white;
+    border: 1px solid var(--border-light);
+    padding: .5rem 1.25rem;
+    border-radius: 100px;
+    font-size: .9rem;
+    color: var(--text-secondary);
+    transition: all var(--transition);
+  }
+
+  .cat-tag:hover, .cat-tag.active {
+    background: var(--bg-primary);
+    color: var(--accent-gold);
+    border-color: var(--bg-primary);
+  }
+
+  .cat-tag .count {
+    display: inline-block;
+    margin-left: .4rem;
+    background: var(--bg-accent);
+    color: var(--accent-gold-dark);
+    padding: .1rem .45rem;
+    border-radius: 100px;
+    font-size: .75rem;
+  }
+
+  .cat-tag.active .count {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .article-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .article-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+    color: var(--text-muted);
+  }
+
+  .article-card h3 {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0 0 .75rem;
+    color: var(--text-primary);
+  }
+
+  .article-card p {
+    font-size: .9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more {
+    color: var(--accent-gold-dark);
+    font-size: .85rem;
+    font-weight: 500;
+  }
+
+  .article-card.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  // 分類篩選互動
+  const tags = document.querySelectorAll<HTMLButtonElement>('.cat-tag');
+  const cards = document.querySelectorAll<HTMLAnchorElement>('.article-card');
+
+  // 檢查 URL query（支援從 Nav/Footer 點分類連結）
+  const params = new URLSearchParams(location.search);
+  const initialCat = params.get('cat');
+  if (initialCat) {
+    tags.forEach((t) => t.classList.toggle('active', t.dataset.cat === initialCat));
+    cards.forEach((c) => c.classList.toggle('hidden', c.dataset.cat !== initialCat));
+  }
+
+  tags.forEach((tag) => {
+    tag.addEventListener('click', () => {
+      const cat = tag.dataset.cat;
+      tags.forEach((t) => t.classList.remove('active'));
+      tag.classList.add('active');
+
+      if (cat === 'all') {
+        cards.forEach((c) => c.classList.remove('hidden'));
+        history.replaceState(null, '', '/blog/');
+      } else {
+        cards.forEach((c) => {
+          c.classList.toggle('hidden', c.dataset.cat !== cat);
+        });
+        history.replaceState(null, '', `/blog/?cat=${cat}`);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,330 @@
+{
+  "meta": {
+    "description": "寶璣建設網站 GoDaddy 舊 URL → Astro 新 URL 對照表",
+    "created": "2026-04-21",
+    "source": "Google site:bqfox.com 搜尋結果 + 既有 bqfox-site 內容",
+    "notes": [
+      "舊 URL 以未 encode 的中文呈現，轉 301 時需同時涵蓋 encoded 版本",
+      "同一篇文章常有 /f/標題 與 /首頁/f/標題 兩種路徑被索引，兩者都要做 301",
+      "服務類別大分類頁建議先做為主轉址目標，確保即使文章沒對應到也能導到相關服務頁"
+    ]
+  },
+  "service_categories": [
+    { "old": "/道路用地買賣", "new": "/services/road-land/", "category": "道路用地" },
+    { "old": "/容積移轉代辦", "new": "/services/floor-area-ratio/", "category": "容積移轉" },
+    { "old": "/祭祀公業", "new": "/services/ancestral-land/", "category": "祭祀公業" },
+    { "old": "/公同共有", "new": "/services/joint-ownership/", "category": "公同共有" },
+    { "old": "/三七五租約解約", "new": "/services/tenancy-375/", "category": "三七五租約" },
+    { "old": "/持份土地買賣", "new": "/services/co-ownership/", "category": "持分土地" },
+    { "old": "/重劃地買賣", "new": "/services/rezoning-land/", "category": "重劃地" },
+    { "old": "/兩岸三地繼承", "new": "/services/cross-strait-inheritance/", "category": "兩岸繼承" }
+  ],
+  "articles": [
+    {
+      "old_paths": [
+        "/f/耕地三七五減租條例釋憲解析：地主收回土地的關鍵轉折"
+      ],
+      "new": "/blog/tenancy-375-constitutional-interpretation/",
+      "category": "三七五租約",
+      "title": "耕地三七五減租條例釋憲解析"
+    },
+    {
+      "old_paths": [
+        "/f/《祭祀公業土地標售全攻略》——從法條解密到實戰操作的7大關鍵步驟",
+        "/首頁/f/《祭祀公業土地標售全攻略》——從法條解密到實戰操作的7大關鍵步驟"
+      ],
+      "new": "/blog/ancestral-land-auction-guide/",
+      "category": "祭祀公業",
+      "title": "祭祀公業土地標售全攻略"
+    },
+    {
+      "old_paths": [
+        "/f/如何知道土地是共同共有還是分別共有？"
+      ],
+      "new": "/blog/co-ownership-vs-joint-ownership/",
+      "category": "持分土地",
+      "title": "如何知道土地是共同共有還是分別共有"
+    },
+    {
+      "old_paths": [
+        "/f/政府道路用地徵收，如何補償?民眾權益必知"
+      ],
+      "new": "/blog/road-land-compensation/",
+      "category": "道路用地",
+      "title": "政府道路用地徵收如何補償"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/自地自建必備手冊"
+      ],
+      "new": "/blog/self-build-handbook/",
+      "category": "農地",
+      "title": "自地自建必備手冊"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/未保存登記建物是什麼？會被拆嗎？專家帶你一次看懂所有權與補登流程"
+      ],
+      "new": "/blog/unregistered-building/",
+      "category": "地籍清理",
+      "title": "未保存登記建物完整解析"
+    },
+    {
+      "old_paths": [
+        "/f/既成道路地主權利全解析｜私人土地變「公用路」後，你該知道的真相！！"
+      ],
+      "new": "/blog/road-established/",
+      "category": "道路用地",
+      "title": "既成道路地主權利全解析"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/馬路學問大！3分鐘看懂「私設/既成/計畫道路」差在哪裡"
+      ],
+      "new": "/blog/road-types-comparison/",
+      "category": "道路用地",
+      "title": "私設/既成/計畫道路差異比較"
+    },
+    {
+      "old_paths": [
+        "/f/都市計畫綠地是什麼？完整解析綠地土地使用限制、可用範圍與違規風險！"
+      ],
+      "new": "/blog/urban-green-land/",
+      "category": "道路用地",
+      "title": "都市計畫綠地完整解析"
+    },
+    {
+      "old_paths": [
+        "/f/建築套繪管制全解析：從買地到蓋屋不可不知的都市遊戲規則"
+      ],
+      "new": "/blog/building-trace-regulation/",
+      "category": "道路用地",
+      "title": "建築套繪管制全解析"
+    },
+    {
+      "old_paths": [
+        "/f/道路用地可以做停車場嗎？"
+      ],
+      "new": "/blog/road-land-parking/",
+      "category": "道路用地",
+      "title": "道路用地可以做停車場嗎"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/道路用地公告現值全攻略｜看懂政府估價眉角，避免吃虧的7大重點"
+      ],
+      "new": "/blog/road-land-announced-price/",
+      "category": "道路用地",
+      "title": "道路用地公告現值全攻略"
+    },
+    {
+      "old_paths": [
+        "/f/道路用地公告現值怎麼查？地政專家教你3分鐘搞懂查詢訣竅+5大實戰案例"
+      ],
+      "new": "/blog/road-land-price-query/",
+      "category": "道路用地",
+      "title": "道路用地公告現值怎麼查"
+    },
+    {
+      "old_paths": [
+        "/f/道路用地可以圍起來嗎",
+        "/首頁/f/道路用地可以圍起來嗎？"
+      ],
+      "new": "/blog/road-land-fence/",
+      "category": "道路用地",
+      "title": "道路用地可以圍起來嗎"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/地上權移轉登記全攻略：從基礎概念到實務操作一次搞懂"
+      ],
+      "new": "/blog/superficies-transfer/",
+      "category": "地籍清理",
+      "title": "地上權移轉登記全攻略"
+    },
+    {
+      "old_paths": [
+        "/f/道路用地用途1分鐘全解析！"
+      ],
+      "new": "/blog/road-land-usage/",
+      "category": "道路用地",
+      "title": "道路用地用途1分鐘全解析"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/道路用地可以蓋房子嗎？內行人告訴你"
+      ],
+      "new": "/blog/road-land-construction/",
+      "category": "道路用地",
+      "title": "道路用地可以蓋房子嗎"
+    },
+    {
+      "old_paths": [
+        "/f/持分土地可以買賣嗎？-1"
+      ],
+      "new": "/blog/co-ownership-sale/",
+      "category": "持分土地",
+      "title": "持分土地可以買賣嗎"
+    },
+    {
+      "old_paths": [
+        "/f/祭祀公業土地可以買賣嗎"
+      ],
+      "new": "/blog/ancestral-land-sale/",
+      "category": "祭祀公業",
+      "title": "祭祀公業土地可以買賣嗎"
+    },
+    {
+      "old_paths": [
+        "/f/何謂祭祀公業"
+      ],
+      "new": "/blog/what-is-ancestral-land/",
+      "category": "祭祀公業",
+      "title": "何謂祭祀公業"
+    },
+    {
+      "old_paths": [
+        "/f/祭祀公業可以買賣土地嗎"
+      ],
+      "new": "/blog/ancestral-land-can-sell/",
+      "category": "祭祀公業",
+      "title": "祭祀公業可以買賣土地嗎"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/祭祀公業土地應如何申報及處分或設定負擔"
+      ],
+      "new": "/blog/ancestral-land-registration/",
+      "category": "祭祀公業",
+      "title": "祭祀公業土地申報與處分"
+    },
+    {
+      "old_paths": [
+        "/f/持分土地怎麼賣最划算？自售 vs. 找投資客的優缺點"
+      ],
+      "new": "/blog/co-ownership-selling-strategy/",
+      "category": "持分土地",
+      "title": "持分土地怎麼賣最划算"
+    },
+    {
+      "old_paths": [
+        "/f/公共設施保留地完全攻略：從定義到活用一次看懂"
+      ],
+      "new": "/blog/public-facility-reserved-land/",
+      "category": "道路用地",
+      "title": "公共設施保留地完全攻略"
+    },
+    {
+      "old_paths": [
+        "/f/三七五減租廢除了嗎？"
+      ],
+      "new": "/blog/tenancy-375-abolished/",
+      "category": "三七五租約",
+      "title": "三七五減租廢除了嗎"
+    },
+    {
+      "old_paths": [
+        "/f/持分土地是什麼？"
+      ],
+      "new": "/blog/what-is-co-ownership/",
+      "category": "持分土地",
+      "title": "持分土地是什麼"
+    },
+    {
+      "old_paths": [
+        "/f/三七五減租懶人包：讓您輕鬆了解最新規定"
+      ],
+      "new": "/blog/tenancy-375-overview/",
+      "category": "三七五租約",
+      "title": "三七五減租懶人包"
+    },
+    {
+      "old_paths": [
+        "/f/土地分別共有買賣解決方式"
+      ],
+      "new": "/blog/co-ownership-transaction/",
+      "category": "持分土地",
+      "title": "土地分別共有買賣解決方式"
+    },
+    {
+      "old_paths": [
+        "/f/持分土地如何分割？法規、程序與實務案例分析"
+      ],
+      "new": "/blog/co-ownership-partition/",
+      "category": "持分土地",
+      "title": "持分土地如何分割"
+    },
+    {
+      "old_paths": [
+        "/f/小心假繼承！土地過戶前，你該知道的三件事"
+      ],
+      "new": "/blog/inheritance-fraud-warning/",
+      "category": "未辦繼承",
+      "title": "小心假繼承土地過戶前須知"
+    },
+    {
+      "old_paths": [
+        "/首頁/f/土地買賣注意事項全解析：承買人必看的完整指南"
+      ],
+      "new": "/blog/land-purchase-guide/",
+      "category": "地籍清理",
+      "title": "土地買賣注意事項全解析"
+    },
+    {
+      "old_paths": [
+        "/f/持分土地能蓋房子嗎？法規限制與申請程序解析"
+      ],
+      "new": "/blog/co-ownership-construction/",
+      "category": "持分土地",
+      "title": "持分土地能蓋房子嗎"
+    },
+    {
+      "old_paths": [
+        "/f/持分土地怎麼繼承？避免爭議的 3 個關鍵重點"
+      ],
+      "new": "/blog/co-ownership-inheritance/",
+      "category": "持分土地",
+      "title": "持分土地怎麼繼承"
+    },
+    {
+      "old_paths": [
+        "/f/分別共有土地的基本概念：民眾必須了解的法律定義"
+      ],
+      "new": "/blog/separate-co-ownership/",
+      "category": "持分土地",
+      "title": "分別共有土地基本概念"
+    }
+  ],
+  "catch_all_rules": [
+    {
+      "description": "所有 /f/開頭但沒有具體對應的舊文章 → blog 首頁（保底規則）",
+      "old_pattern": "/f/*",
+      "new": "/blog/",
+      "priority": "low"
+    },
+    {
+      "description": "所有 /首頁/f/開頭但沒有具體對應的舊文章 → blog 首頁",
+      "old_pattern": "/首頁/f/*",
+      "new": "/blog/",
+      "priority": "low"
+    },
+    {
+      "description": "/首頁 → 網站首頁",
+      "old_pattern": "/首頁",
+      "new": "/",
+      "priority": "medium"
+    },
+    {
+      "description": "blog query string 參數 → blog 首頁（Astro 會用 URL 參數處理分類）",
+      "old_pattern": "/?blog=y&blogcategory=*",
+      "new": "/blog/",
+      "priority": "medium"
+    }
+  ],
+  "action_items_for_user": [
+    "登入 Google Search Console（https://search.google.com/search-console）",
+    "選擇 bqfox.com 資源",
+    "左側「頁面」→ 點「匯出」→ 下載 CSV",
+    "把 CSV 交給我，我會把遺漏的舊 URL 補進這份對照表"
+  ]
+}

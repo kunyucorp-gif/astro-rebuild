@@ -1,0 +1,105 @@
+---
+/**
+ * SEO 核心元件
+ * 負責產生：
+ *   - 標題與描述 meta
+ *   - canonical URL
+ *   - Open Graph（Facebook、LINE 分享用）
+ *   - Twitter Card
+ *   - JSON-LD Structured Data（Schema.org，Google 精選摘要 + AI 引用關鍵）
+ *
+ * 使用方式：
+ *   <SEO title="xxx" description="xxx" jsonLd={[schema1, schema2]} />
+ */
+
+export interface ArticleMeta {
+  publishedTime: string;
+  modifiedTime?: string;
+  author: string;
+  section: string;
+  tags?: string[];
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  articleMeta?: ArticleMeta;
+  jsonLd?: object[];
+}
+
+const {
+  title,
+  description,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  ogImage = '/og-default.png',
+  ogType = 'website',
+  noindex = false,
+  articleMeta,
+  jsonLd = [],
+} = Astro.props;
+
+// 拼接完整的 OG image URL（需要絕對路徑）
+const fullOgImage = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(ogImage, Astro.site).href;
+
+// 完整標題：已包含品牌名時不重複加，否則自動補「｜寶璣建設」
+const fullTitle = title.includes('寶璣建設')
+  ? title
+  : `${title}｜寶璣建設有限公司`;
+---
+
+<!-- Primary Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+)}
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullOgImage} />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:site_name" content="寶璣建設有限公司" />
+
+{
+  articleMeta && (
+    <>
+      <meta property="article:published_time" content={articleMeta.publishedTime} />
+      {articleMeta.modifiedTime && (
+        <meta property="article:modified_time" content={articleMeta.modifiedTime} />
+      )}
+      <meta property="article:author" content={articleMeta.author} />
+      <meta property="article:section" content={articleMeta.section} />
+      {articleMeta.tags?.map((tag) => (
+        <meta property="article:tag" content={tag} />
+      ))}
+    </>
+  )
+}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOgImage} />
+
+<!-- JSON-LD Structured Data（GEO 關鍵） -->
+{
+  jsonLd.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}

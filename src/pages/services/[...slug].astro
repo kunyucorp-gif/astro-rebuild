@@ -1,0 +1,277 @@
+---
+/**
+ * 服務頁動態路由
+ * /services/[slug]/ 對應 src/content/services/[slug].md
+ */
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  breadcrumbSchema,
+  faqSchema,
+  serviceSchema,
+} from '../../lib/schemas';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'services'>;
+}
+
+const { entry } = Astro.props;
+const { data, slug } = entry;
+const { Content } = await entry.render();
+
+// 產生 Schema
+const schemas: object[] = [
+  serviceSchema({
+    name: data.title,
+    description: data.description,
+    slug,
+    serviceType: data.category,
+  }),
+  breadcrumbSchema([
+    { name: '首頁', url: '/' },
+    { name: '營業項目', url: '/services/' },
+    { name: data.title, url: `/services/${slug}/` },
+  ]),
+];
+
+if (data.faq && data.faq.length > 0) {
+  schemas.push(faqSchema(data.faq));
+}
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  jsonLd={schemas}
+>
+  <section class="service-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="麵包屑">
+        <a href="/">首頁</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/">營業項目</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{data.title}</span>
+      </nav>
+
+      <h1>
+        <span class="gold">{data.heroTitle}</span>
+      </h1>
+      {data.heroSubtitle && <p class="lead">{data.heroSubtitle}</p>}
+
+      <div class="service-hero-actions">
+        <a href="/contact/" class="btn btn-primary">免費評估諮詢</a>
+        <a href="tel:0222746789" class="btn btn-outline">☎ 02-2274-6789</a>
+      </div>
+    </div>
+  </section>
+
+  {data.features && data.features.length > 0 && (
+    <section class="section-sm features-section">
+      <div class="wrap">
+        <div class="features-grid">
+          {data.features.map((f) => (
+            <div class="feature">
+              <h4>{f.title}</h4>
+              <p>{f.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap-narrow">
+      <div class="article-body">
+        <Content />
+      </div>
+
+      {data.process && data.process.length > 0 && (
+        <section class="process">
+          <h2>處理流程</h2>
+          <ol class="process-steps">
+            {data.process.map((step) => (
+              <li>
+                <div class="step-number">{step.step}</div>
+                <div class="step-content">
+                  <h4>{step.title}</h4>
+                  <p>{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {data.faq && data.faq.length > 0 && (
+        <section class="faq">
+          <h2>常見問題</h2>
+          {data.faq.map((item) => (
+            <div class="faq-item">
+              <div class="faq-question">{item.question}</div>
+              <div class="faq-answer">{item.answer}</div>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <section class="service-cta">
+        <h3>立即聯繫寶璣建設</h3>
+        <p>
+          律師全程審核合約・資深地政士辦理過戶・5 個工作天書面評估・初次諮詢免費
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+          <a href="/contact/" class="btn btn-primary">免費諮詢</a>
+          <a href="tel:0222746789" class="btn btn-outline">☎ 02-2274-6789</a>
+          <a href="https://lin.ee/wedzic3" target="_blank" rel="noopener" class="btn btn-outline">LINE @484jhubi</a>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-hero {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -5%;
+    width: 50%;
+    height: 180%;
+    background: radial-gradient(ellipse, rgba(201, 169, 89, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .service-hero .breadcrumb {
+    color: var(--accent-gold-light);
+  }
+
+  .service-hero .breadcrumb a {
+    color: var(--accent-gold-light);
+  }
+
+  .service-hero .breadcrumb span[aria-current='page'] {
+    color: var(--accent-gold);
+  }
+
+  .service-hero h1 {
+    color: var(--text-inverse);
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-hero .lead {
+    font-size: 1.15rem;
+    color: var(--accent-gold-light);
+    max-width: 700px;
+    line-height: 1.75;
+  }
+
+  .service-hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .features-section {
+    background: var(--bg-section);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature {
+    padding: 1.5rem;
+    background: white;
+    border-top: 3px solid var(--accent-gold);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .feature h4 {
+    color: var(--accent-gold-dark);
+    margin-top: 0;
+    margin-bottom: .75rem;
+  }
+
+  .feature p {
+    color: var(--text-secondary);
+    font-size: .95rem;
+    margin: 0;
+  }
+
+  .process-steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 2rem 0;
+    padding: 0;
+  }
+
+  .process-steps li {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    font-weight: 900;
+    font-family: var(--font-serif);
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+  }
+
+  .step-content h4 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+
+  .service-cta {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .service-cta h3 {
+    color: var(--accent-gold);
+    margin-top: 0;
+  }
+
+  .service-cta p {
+    color: var(--accent-gold-light);
+    margin-bottom: 0;
+  }
+</style>

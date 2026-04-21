@@ -1,0 +1,50 @@
+---
+/**
+ * 全站導覽列
+ * 含品牌 + 服務頁下拉選單 + 聯絡資訊
+ */
+---
+
+<nav class="nav" role="navigation" aria-label="主要導覽">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="寶璣建設有限公司 首頁">
+      <div class="nav-brand-mark" aria-hidden="true">璣</div>
+      <div class="nav-brand-text">
+        <strong>寶璣建設有限公司</strong>
+        <small>BAO CHI CONSTRUCTION</small>
+      </div>
+    </a>
+
+    <ul class="nav-menu" role="menubar">
+      <li class="nav-item" role="none">
+        <a href="/about/" class="nav-link" role="menuitem">關於我們</a>
+      </li>
+      <li class="nav-item" role="none">
+        <a href="/services/" class="nav-link" role="menuitem" aria-haspopup="true">
+          營業項目 ▾
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <a href="/services/road-land/" role="menuitem">道路用地買賣</a>
+          <a href="/services/floor-area-ratio/" role="menuitem">容積移轉代辦</a>
+          <a href="/services/tenancy-375/" role="menuitem">三七五租約解約</a>
+          <a href="/services/co-ownership/" role="menuitem">持份土地買賣</a>
+          <a href="/services/joint-ownership/" role="menuitem">公同共有處理</a>
+          <a href="/services/ancestral-land/" role="menuitem">祭祀公業</a>
+          <a href="/services/rezoning-land/" role="menuitem">重劃地買賣</a>
+          <a href="/services/cross-strait-inheritance/" role="menuitem">兩岸三地繼承</a>
+        </div>
+      </li>
+      <li class="nav-item" role="none">
+        <a href="/blog/" class="nav-link" role="menuitem">知識專欄</a>
+      </li>
+      <li class="nav-item" role="none">
+        <a href="/contact/" class="nav-link" role="menuitem">聯絡諮詢</a>
+      </li>
+      <li class="nav-item" role="none">
+        <a href="tel:0222746789" class="nav-link" style="color: var(--accent-gold)">
+          ☎ 02-2274-6789
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

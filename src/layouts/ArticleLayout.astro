@@ -1,0 +1,325 @@
+---
+/**
+ * 文章 Layout
+ * 用於 /blog/[slug]/ 的單篇文章頁
+ *
+ * GEO 關鍵結構：
+ *   - 文章開頭的定義段（AI 最愛抓）
+ *   - h2/h3 階層分明的正文
+ *   - FAQ 區塊 + FAQ Schema（精選摘要關鍵）
+ *   - 麵包屑 Schema
+ *   - Article Schema
+ */
+
+import BaseLayout from './BaseLayout.astro';
+import {
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+} from '../lib/schemas';
+import type { CollectionEntry } from 'astro:content';
+import { CATEGORY_SLUGS, type Category } from '../content/config';
+
+export interface Props {
+  entry: CollectionEntry<'articles'>;
+  relatedArticles?: CollectionEntry<'articles'>[];
+}
+
+const { entry, relatedArticles = [] } = Astro.props;
+const { data, slug } = entry;
+
+// 產生各種 Schema
+const schemas: object[] = [
+  articleSchema({
+    title: data.title,
+    description: data.description,
+    slug,
+    pubDate: data.pubDate,
+    updatedDate: data.updatedDate,
+    author: data.author,
+    category: data.category,
+    heroImage: data.heroImage,
+  }),
+  breadcrumbSchema([
+    { name: '首頁', url: '/' },
+    { name: '知識專欄', url: '/blog/' },
+    { name: data.category, url: `/blog/?cat=${CATEGORY_SLUGS[data.category as Category]}` },
+    { name: data.title, url: `/blog/${slug}/` },
+  ]),
+];
+
+// 若文章有 FAQ，加入 FAQ Schema
+if (data.faq && data.faq.length > 0) {
+  schemas.push(faqSchema(data.faq));
+}
+
+// 格式化日期
+const pubDateStr = data.pubDate.toISOString();
+const pubDateDisplay = data.pubDate.toLocaleDateString('zh-TW', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  ogType="article"
+  ogImage={data.heroImage}
+  articleMeta={{
+    publishedTime: pubDateStr,
+    modifiedTime: data.updatedDate?.toISOString(),
+    author: data.author,
+    section: data.category,
+    tags: data.keywords,
+  }}
+  jsonLd={schemas}
+>
+  <article class="article">
+    <!-- Hero 區 -->
+    <header class="article-hero">
+      <div class="wrap-narrow">
+        <nav class="breadcrumb" aria-label="麵包屑">
+          <a href="/">首頁</a>
+          <span aria-hidden="true">›</span>
+          <a href="/blog/">知識專欄</a>
+          <span aria-hidden="true">›</span>
+          <a href={`/blog/?cat=${CATEGORY_SLUGS[data.category as Category]}`}>
+            {data.category}
+          </a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">{data.title}</span>
+        </nav>
+
+        <div class="article-meta-top">
+          <span class="article-category">{data.category}</span>
+          <span class="article-date">
+            <time datetime={pubDateStr}>{pubDateDisplay}</time>
+          </span>
+          <span class="article-type">{data.articleType}</span>
+        </div>
+
+        <h1>{data.title}</h1>
+        <p class="article-lead">{data.description}</p>
+      </div>
+    </header>
+
+    <!-- 分享 -->
+    <div class="share-bar">
+      <div class="wrap-narrow">
+        <button
+          class="share-btn"
+          onclick={`window.open('https://lin.ee/wedzic3','_blank')`}
+        >
+          📱 LINE 諮詢
+        </button>
+        <button
+          class="share-btn"
+          onclick={`navigator.clipboard.writeText(location.href); this.textContent='已複製連結 ✓'`}
+        >
+          🔗 複製連結
+        </button>
+      </div>
+    </div>
+
+    <!-- 正文 -->
+    <div class="wrap-narrow section">
+      <div class="article-body">
+        <slot />
+      </div>
+
+      <!-- FAQ 區塊（GEO 關鍵） -->
+      {data.faq && data.faq.length > 0 && (
+        <section class="faq">
+          <h2>常見問題</h2>
+          {data.faq.map((item) => (
+            <div class="faq-item">
+              <div class="faq-question">{item.question}</div>
+              <div class="faq-answer">{item.answer}</div>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <!-- 聯絡 CTA -->
+      <section class="article-cta">
+        <h3>有相關問題？寶璣建設為您提供免費初次諮詢</h3>
+        <p>
+          深耕板橋逾十年，律師全程審核合約，資深地政士辦理過戶，
+          5 個工作天內提供書面評估報價。
+        </p>
+        <div class="article-cta-actions">
+          <a href="/contact/" class="btn btn-primary">免費諮詢</a>
+          <a href="tel:0222746789" class="btn btn-outline">☎ 02-2274-6789</a>
+        </div>
+      </section>
+
+      <!-- 相關文章 -->
+      {relatedArticles.length > 0 && (
+        <section class="related-articles">
+          <h2>延伸閱讀</h2>
+          <div class="related-grid">
+            {relatedArticles.map((related) => (
+              <a href={`/blog/${related.slug}/`} class="card">
+                <span class="article-category">{related.data.category}</span>
+                <h4>{related.data.title}</h4>
+                <p>{related.data.description.slice(0, 80)}…</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-hero {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 3rem 0 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 40%;
+    height: 160%;
+    background: radial-gradient(ellipse, rgba(201, 169, 89, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .article-hero h1 {
+    color: var(--text-inverse);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin: 1rem 0;
+  }
+
+  .article-hero .breadcrumb {
+    color: var(--accent-gold-light);
+  }
+
+  .article-hero .breadcrumb a {
+    color: var(--accent-gold-light);
+  }
+
+  .article-hero .breadcrumb a:hover {
+    color: var(--accent-gold);
+  }
+
+  .article-hero .breadcrumb span[aria-current='page'] {
+    color: var(--accent-gold);
+  }
+
+  .article-meta-top {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: .875rem;
+    color: var(--accent-gold-light);
+    flex-wrap: wrap;
+  }
+
+  .article-category {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: .2rem .75rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: .8rem;
+  }
+
+  .article-type {
+    border: 1px solid var(--accent-gold-light);
+    padding: .1rem .65rem;
+    border-radius: 100px;
+    font-size: .75rem;
+  }
+
+  .article-lead {
+    font-size: 1.1rem;
+    color: var(--accent-gold-light);
+    line-height: 1.75;
+    margin-top: 1rem;
+  }
+
+  .share-bar {
+    background: var(--bg-section);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .share-bar .wrap-narrow {
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+  }
+
+  .share-btn {
+    background: white;
+    border: 1px solid var(--border-light);
+    padding: .5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: .875rem;
+    color: var(--text-primary);
+    transition: all var(--transition);
+  }
+
+  .share-btn:hover {
+    border-color: var(--accent-gold);
+    background: var(--bg-accent);
+  }
+
+  .article-cta {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-inverse);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .article-cta h3 {
+    color: var(--accent-gold);
+    margin-top: 0;
+  }
+
+  .article-cta p {
+    color: var(--accent-gold-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .article-cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .related-articles {
+    margin-top: 4rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .related-grid .card h4 {
+    margin: .5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .related-grid .card p {
+    color: var(--text-secondary);
+    font-size: .9rem;
+    margin-bottom: 0;
+  }
+</style>

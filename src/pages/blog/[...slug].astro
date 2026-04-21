@@ -1,0 +1,44 @@
+---
+/**
+ * 文章動態路由
+ * /blog/[slug]/ 對應 src/content/articles/[slug].md
+ *
+ * Astro 靜態生成策略：build 時把所有 article 都產出
+ */
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+
+  return articles.map((entry) => {
+    // 找相關文章：同分類、非本篇，取 3 篇
+    const related = articles
+      .filter(
+        (a) =>
+          a.slug !== entry.slug &&
+          a.data.category === entry.data.category &&
+          !a.data.draft
+      )
+      .slice(0, 3);
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, relatedArticles: related },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'articles'>;
+  relatedArticles: CollectionEntry<'articles'>[];
+}
+
+const { entry, relatedArticles } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<ArticleLayout entry={entry} relatedArticles={relatedArticles}>
+  <Content />
+</ArticleLayout>

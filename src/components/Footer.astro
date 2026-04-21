@@ -1,0 +1,67 @@
+---
+/**
+ * 全站頁尾
+ * 含公司資訊（強化 E-E-A-T）、服務連結、知識專欄、聯絡資訊
+ */
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>寶璣建設有限公司</h5>
+        <p style="color: var(--accent-gold-light); font-size: .9rem; margin-bottom: 1rem;">
+          秉持「誠信待人，客戶至上」，深耕新北市板橋逾十年，
+          提供道路用地、容積移轉、持份土地、祭祀公業、兩岸繼承等特殊土地全方位專業服務。
+        </p>
+        <p style="font-size: .8rem; color: var(--text-muted);">
+          統一編號：94157953
+        </p>
+      </div>
+
+      <div>
+        <h5>服務項目</h5>
+        <ul>
+          <li><a href="/services/road-land/">道路用地買賣</a></li>
+          <li><a href="/services/floor-area-ratio/">容積移轉代辦</a></li>
+          <li><a href="/services/tenancy-375/">三七五租約解約</a></li>
+          <li><a href="/services/co-ownership/">持份土地買賣</a></li>
+          <li><a href="/services/joint-ownership/">公同共有處理</a></li>
+          <li><a href="/services/ancestral-land/">祭祀公業</a></li>
+          <li><a href="/services/rezoning-land/">重劃地買賣</a></li>
+          <li><a href="/services/cross-strait-inheritance/">兩岸三地繼承</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>知識專欄</h5>
+        <ul>
+          <li><a href="/blog/">所有文章</a></li>
+          <li><a href="/blog/?cat=road-land">道路用地</a></li>
+          <li><a href="/blog/?cat=tenancy-375">三七五租約</a></li>
+          <li><a href="/blog/?cat=co-ownership">持分土地</a></li>
+          <li><a href="/blog/?cat=ancestral-land">祭祀公業</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>聯絡資訊</h5>
+        <ul>
+          <li>📍 新北市板橋區南雅南路二段144巷73號</li>
+          <li>🚇 亞東醫院站2號出口</li>
+          <li><a href="tel:0222746789">☎ 02-2274-6789</a></li>
+          <li><a href="https://lin.ee/wedzic3" target="_blank" rel="noopener">
+            LINE：@484jhubi
+          </a></li>
+          <li>🕐 週一至週五 08:00–17:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2012 – {currentYear} 寶璣建設有限公司 BAO CHI CONSTRUCTION CO., LTD. 版權所有
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,538 @@
+/* ==============================
+   寶璣建設全站樣式
+   設計方向：編輯式傳統權威感
+   ============================== */
+
+/* 載入 Google Fonts：
+   - Noto Serif TC：襯線體，標題與品牌名用，傳達權威與沉穩
+   - Noto Sans TC：無襯線體，內文閱讀
+   - Cormorant Garamond：英文襯線襯托
+*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;700&display=swap');
+
+/* ---- 設計 Tokens ---- */
+:root {
+  /* 色系 */
+  --bg-primary: #0f1419;       /* 深墨 */
+  --bg-secondary: #1a1f26;     /* 深墨稍淺 */
+  --bg-card: #ffffff;
+  --bg-section: #f7f5f1;       /* 米白底色 */
+  --bg-accent: #f4e9d1;        /* 淺金米 */
+
+  --text-primary: #1a1f26;     /* 內文主色 */
+  --text-secondary: #4a5361;   /* 內文次色 */
+  --text-muted: #7a8598;       /* 輔助文字 */
+  --text-inverse: #f7f5f1;     /* 深底上的文字 */
+
+  --accent-gold: #c9a959;      /* 主金色（錢幣 logo 色） */
+  --accent-gold-dark: #a68a42; /* 暗金 */
+  --accent-gold-light: #e4d4a0;/* 淺金 */
+  --accent-ink: #2d3440;       /* 墨色 */
+
+  --border-light: #e5ddd0;
+  --border-medium: #c9a959;
+
+  /* 字體 */
+  --font-serif: 'Noto Serif TC', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+  /* 尺寸 */
+  --max-width: 1200px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* 陰影 */
+  --shadow-sm: 0 2px 4px rgba(15, 20, 25, 0.08);
+  --shadow-md: 0 4px 12px rgba(15, 20, 25, 0.1);
+  --shadow-lg: 0 8px 32px rgba(15, 20, 25, 0.12);
+
+  /* 過渡 */
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  background: #fff;
+  font-feature-settings: 'palt' 1; /* 中日文字間距優化 */
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent-gold-dark);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent-gold);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ---- 排版 ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 2.5rem 0 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--accent-gold);
+  position: relative;
+}
+h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin: 2rem 0 .75rem; color: var(--accent-ink); }
+h4 { font-size: 1.125rem; margin: 1.5rem 0 .5rem; }
+
+p { margin-bottom: 1rem; }
+
+ul, ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+ul li, ol li {
+  margin-bottom: .5rem;
+}
+
+strong { color: var(--accent-gold-dark); font-weight: 700; }
+
+blockquote {
+  border-left: 4px solid var(--accent-gold);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: var(--bg-accent);
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+/* ---- Callout 提示框（文章 GEO 關鍵：AI 愛抓這種結構化提示） ---- */
+.callout {
+  background: linear-gradient(135deg, #fefaf0 0%, #faf0dc 100%);
+  border-left: 4px solid var(--accent-gold);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.callout strong { color: var(--accent-gold-dark); }
+
+/* ---- Layout ---- */
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.wrap-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-sm { padding: 2rem 0; }
+.section-lg { padding: 6rem 0; }
+
+/* ---- Nav ---- */
+.nav {
+  background: var(--bg-primary);
+  color: var(--text-inverse);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--text-inverse);
+}
+
+.nav-brand-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  color: var(--bg-primary);
+  box-shadow: 0 0 16px rgba(201, 169, 89, 0.4);
+}
+
+.nav-brand-text strong {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--text-inverse);
+  display: block;
+}
+
+.nav-brand-text small {
+  font-family: var(--font-sans);
+  font-size: .7rem;
+  color: var(--accent-gold-light);
+  letter-spacing: 0.1em;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  gap: .25rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text-inverse);
+  padding: .5rem 1rem;
+  font-size: .95rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--accent-gold);
+  background: rgba(201, 169, 89, 0.1);
+}
+
+/* 下拉選單 */
+.nav-item {
+  position: relative;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-primary);
+  border-top: 2px solid var(--accent-gold);
+  min-width: 220px;
+  padding: .5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition);
+  box-shadow: var(--shadow-lg);
+}
+
+.nav-item:hover .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: .6rem 1.25rem;
+  color: var(--text-inverse);
+  font-size: .9rem;
+}
+
+.nav-dropdown a:hover {
+  background: rgba(201, 169, 89, 0.15);
+  color: var(--accent-gold);
+}
+
+/* ---- 麵包屑 ---- */
+.breadcrumb {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-gold-dark);
+}
+
+.breadcrumb span[aria-current='page'] {
+  color: var(--accent-gold-dark);
+  font-weight: 500;
+}
+
+/* ---- Hero ---- */
+.hero {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-inverse);
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(201, 169, 89, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  color: var(--text-inverse);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gold {
+  color: var(--accent-gold);
+}
+
+.hero .lead {
+  font-size: 1.15rem;
+  color: var(--accent-gold-light);
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+/* ---- 按鈕 ---- */
+.btn {
+  display: inline-block;
+  padding: .85rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: .95rem;
+  text-decoration: none;
+  transition: all var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  border-color: var(--accent-gold);
+}
+
+.btn-primary:hover {
+  background: var(--accent-gold-dark);
+  border-color: var(--accent-gold-dark);
+  color: var(--bg-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.btn-outline:hover {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+}
+
+/* ---- 卡片 ---- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-gold);
+}
+
+/* ---- 文章正文排版 ---- */
+.article-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+}
+
+.article-body h2 {
+  margin-top: 2.5rem;
+}
+
+.article-body h3 {
+  margin-top: 2rem;
+  color: var(--accent-ink);
+}
+
+.article-body ul, .article-body ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.article-body li {
+  margin-bottom: .75rem;
+}
+
+/* ---- FAQ 區塊 ---- */
+.faq {
+  margin: 3rem 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-light);
+  padding: 1.25rem 0;
+}
+
+.faq-question {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+}
+
+.faq-question::before {
+  content: 'Q';
+  color: var(--accent-gold);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.faq-answer {
+  padding-left: 1.8rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ---- Footer ---- */
+.footer {
+  background: var(--bg-primary);
+  color: var(--text-inverse);
+  padding: 3rem 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer h5 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(201, 169, 89, 0.3);
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: .5rem;
+}
+
+.footer a {
+  color: var(--accent-gold-light);
+  font-size: .9rem;
+}
+
+.footer a:hover {
+  color: var(--accent-gold);
+}
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(201, 169, 89, 0.2);
+  text-align: center;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+/* ---- 響應式 ---- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .nav-menu {
+    display: none; /* 後續加 hamburger 選單 */
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 3rem 0;
+  }
+  .section {
+    padding: 2.5rem 0;
+  }
+}
+
+/* ---- 無障礙 ---- */
+*:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

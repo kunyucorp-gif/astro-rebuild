@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../lib/schemas';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: '首頁', url: '/' },
+    { name: '關於我們', url: '/about/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="關於寶璣建設｜誠信深耕板橋十餘年的土地整合專家"
+  description="寶璣建設有限公司（統編 94157953）成立於 2012 年，深耕新北市板橋，專辦道路用地、容積移轉、三七五租約、持份土地、祭祀公業等特殊土地案件，累積超過千件實務經驗。"
+  jsonLd={schemas}
+>
+  <section class="hero">
+    <div class="wrap">
+      <p style="color: var(--accent-gold); font-family: var(--font-serif); letter-spacing: .2em; margin-bottom: .5rem;">
+        ABOUT US · 關於我們
+      </p>
+      <h1>誠信待人，<span class="gold">客戶至上</span></h1>
+      <p class="lead">
+        自 2012 年成立至今，寶璣建設深耕新北市板橋，
+        專業處理各種特殊土地案件，為地主解決複雜的產權難題。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap-narrow">
+      <div class="article-body">
+        <h2>公司簡介</h2>
+        <p>
+          寶璣建設有限公司（統一編號：<strong>94157953</strong>）成立於 2012 年，
+          以「誠信待人、客戶至上」為核心理念，深耕新北市板橋逾十年，
+          專辦特殊土地案件整合與買賣。
+        </p>
+
+        <p>
+          我們不是傳統仲介，也不是單純投資公司，而是一個結合
+          <strong>律師、資深地政士、地政實務團隊</strong>的土地整合服務單位。
+          針對一般仲介不願處理、或處理不好的「棘手土地」——包含道路用地、
+          容積移轉、三七五租約、持分土地、祭祀公業、兩岸繼承等——
+          我們提供從產權調查、合約審核、稅務規劃到過戶登記的一站式服務。
+        </p>
+
+        <h2>專業領域</h2>
+        <p>十年以上實務經驗，累積上千件特殊土地案件，專精領域包含：</p>
+        <ul>
+          <li><strong>道路用地買賣</strong>：既成道路、計畫道路全台收購</li>
+          <li><strong>容積移轉代辦</strong>：送出基地申辦、代金計算、建商媒合</li>
+          <li><strong>三七五租約解約</strong>：耕地租佃爭議協調與終止</li>
+          <li><strong>持份土地買賣</strong>：分別共有整合、優先承購處理</li>
+          <li><strong>公同共有處理</strong>：家族土地分割、派下員協調</li>
+          <li><strong>祭祀公業</strong>：派下員申報、土地處分、法人化</li>
+          <li><strong>重劃地買賣</strong>：市地重劃區土地整合</li>
+          <li><strong>兩岸三地繼承</strong>：大陸、港澳繼承人來台繼承</li>
+        </ul>
+
+        <h2>服務承諾</h2>
+        <div class="callout">
+          <strong>初次諮詢完全免費</strong><br/>
+          帶著地號來電或來訊，我們會在 5 個工作天內提供書面評估報價。
+          整個流程中律師全程審核合約，資深地政士辦理過戶登記，
+          不收任何隱藏費用，流程透明可追溯。
+        </div>
+
+        <h2>聯絡我們</h2>
+        <p>
+          📍 <strong>新北市板橋區南雅南路二段 144 巷 73 號</strong><br/>
+          🚇 亞東醫院站 2 號出口<br/>
+          ☎ <a href="tel:0222746789">02-2274-6789</a><br/>
+          💬 <a href="https://lin.ee/wedzic3" target="_blank" rel="noopener">LINE @484jhubi</a><br/>
+          🕐 週一至週五 08:00–17:00
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

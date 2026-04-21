@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../../lib/schemas';
+
+const services = await getCollection('services');
+services.sort((a, b) => a.data.order - b.data.order);
+
+const schemas = [
+  breadcrumbSchema([
+    { name: '首頁', url: '/' },
+    { name: '營業項目', url: '/services/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="營業項目｜寶璣建設八大特殊土地專業服務"
+  description="寶璣建設專辦道路用地買賣、容積移轉代辦、三七五租約解約、持份土地買賣、公同共有處理、祭祀公業、重劃地買賣、兩岸三地繼承等八大特殊土地服務，律師把關、資深地政士辦理。"
+  jsonLd={schemas}
+>
+  <section class="hero">
+    <div class="wrap">
+      <p style="color: var(--accent-gold); font-family: var(--font-serif); letter-spacing: .2em; margin-bottom: .5rem;">
+        SERVICES · 營業項目
+      </p>
+      <h1>八大<span class="gold">特殊土地</span>專業服務</h1>
+      <p class="lead">
+        從道路用地收購到兩岸繼承，寶璣建設累積超過千件實務案件，
+        每一項服務都由律師與資深地政士全程把關，為您解決最棘手的土地難題。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="services-list">
+        {services.map((s) => (
+          <a href={`/services/${s.slug}/`} class="service-item">
+            <div class="service-item-num">{String(s.data.order).padStart(2, '0')}</div>
+            <div class="service-item-content">
+              <h3>{s.data.title}</h3>
+              <p>{s.data.description}</p>
+            </div>
+            <div class="service-item-arrow">→</div>
+          </a>
+        ))}
+      </div>
+
+      {services.length === 0 && (
+        <p style="text-align:center;padding:3rem;color:var(--text-muted)">
+          服務內容遷移中⋯
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .service-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    transition: all var(--transition);
+  }
+
+  .service-item:hover {
+    border-color: var(--accent-gold);
+    background: var(--bg-accent);
+    transform: translateX(8px);
+  }
+
+  .service-item-num {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent-gold);
+    line-height: 1;
+  }
+
+  .service-item-content h3 {
+    margin: 0 0 .5rem;
+    font-size: 1.35rem;
+  }
+
+  .service-item-content p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .service-item-arrow {
+    color: var(--accent-gold-dark);
+    font-size: 1.5rem;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .service-item {
+      grid-template-columns: 60px 1fr 30px;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+    .service-item-num {
+      font-size: 1.75rem;
+    }
+  }
+</style>
